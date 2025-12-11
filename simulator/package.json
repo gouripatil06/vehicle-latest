@@ -1,0 +1,21 @@
+{
+  "name": "simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.22.0",
+  "dependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@supabase/supabase-js": "^2.83.0",
+    "axios": "^1.7.9",
+    "dotenv": "^17.2.3"
+  }
+}

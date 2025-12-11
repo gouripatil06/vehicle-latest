@@ -1,0 +1,9 @@
+[phases.install]
+cmds = ["cd backend && npm install --production"]
+
+[phases.build]
+cmds = ["cp -r simulator backend/simulator 2>/dev/null || echo 'Simulator copy skipped'"]
+
+[start]
+cmd = "cd backend && node src/server.js"
+
