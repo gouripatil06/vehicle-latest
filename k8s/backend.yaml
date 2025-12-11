@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vehicle-backend
+  labels:
+    app: vehicle-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vehicle-backend
+  template:
+    metadata:
+      labels:
+        app: vehicle-backend
+    spec:
+      containers:
+        - name: backend
+          image: vehicletrackingsimulator-main-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5001
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "5001"
+            - name: BACKEND_URL
+              value: "http://backend:5001"
+            - name: CORS_ORIGIN
+              value: "*"
+            - name: DEFAULT_SPEED_LIMIT
+              value: "60"
+            - name: SUPABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SUPABASE_URL
+            - name: SUPABASE_SERVICE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SUPABASE_SERVICE_KEY
+            - name: SUPABASE_ANON_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SUPABASE_ANON_KEY
+            - name: SIMULATOR_INTERVAL
+              value: "2000"
+            - name: VEHICLE_COUNT
+              value: "3"
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 5001
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 5001
+            initialDelaySeconds: 10
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: vehicle-backend
+spec:
+  type: NodePort
+  selector:
+    app: vehicle-backend
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5001
+      targetPort: 5001
+      nodePort: 30082
+

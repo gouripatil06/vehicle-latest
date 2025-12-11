@@ -11,6 +11,8 @@ yarn.lock
 .env.*.local
 **/.env
 **/.env.local
+app-secrets.yaml
+k8s/app-secrets.yaml
 
 # Build outputs
 dist/
