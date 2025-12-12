@@ -9,7 +9,7 @@ import axios from "axios"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:30081'
 
 export function SimulatorControl() {
   const [isRunning, setIsRunning] = useState(false)

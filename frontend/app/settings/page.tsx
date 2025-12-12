@@ -65,7 +65,7 @@ export default function SettingsPage() {
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/simulator/settings`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:30081'}/api/simulator/settings`)
       if (response.data.success) {
         setSettings(response.data.data)
       }
@@ -89,7 +89,7 @@ export default function SettingsPage() {
     try {
       const updates = Object.values(vehicleDetails)
       for (const detail of updates) {
-        await axios.put(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/vehicles/${detail.vehicle_id}/details`, detail)
+        await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:30081'}/api/vehicles/${detail.vehicle_id}/details`, detail)
       }
       toast.success("Vehicle details saved successfully!")
     } catch (error: any) {
@@ -103,7 +103,7 @@ export default function SettingsPage() {
     setLoading(true)
     try {
       const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/simulator/settings`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:30081'}/api/simulator/settings`,
         settings
       )
       if (response.data.success) {
