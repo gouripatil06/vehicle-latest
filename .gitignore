@@ -52,6 +52,6 @@ coverage/
 # Ignore backend1 folder (separate repo)
 backend1/
 
-# Kubernetes files
-k8s/
-
+# Ignore sh scripts in k8s folder
+k8s/*.sh
+k8s/*-secret.yaml

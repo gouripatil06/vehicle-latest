@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: vehicle-tracking
+data:
+  NODE_ENV: "production"
+  PORT: "5001"
+  DEFAULT_SPEED_LIMIT: "60"
+  CORS_ORIGIN: "http://localhost:30080"
+  BACKEND_URL: "http://backend-service:5001"
+  SIMULATOR_INTERVAL: "2000"
+  VEHICLE_COUNT: "3"

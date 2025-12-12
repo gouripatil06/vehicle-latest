@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: vehicle-tracking
+data:
+  NODE_ENV: "production"
+  # Note: NEXT_PUBLIC_API_URL is set at build time via --build-arg
+  # This is kept for reference but won't affect the build
+  NEXT_PUBLIC_API_URL: "http://localhost:30081"
+  NEXT_PUBLIC_BACKEND_URL: "http://localhost:30081"
+  SIMULATOR_INTERVAL: "2000"
+  VEHICLE_COUNT: "3"
